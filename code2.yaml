@@ -3,7 +3,9 @@
   become: yes
   ignore_errors: yes
   gather_facts: 1 
-  tasks: 
+   vars: 
+    color: red
+    tasks: 
      - name: Check number of cpu
        command: uptime 
        register: nproc_output

@@ -29,7 +29,15 @@
          dest: /var/www/html/index.html
        tags:
          - file_copy
-         
+       notify: Restart Apache
+     
+  handlers:
+
+     - name: Restart Apache
+       systemd:
+           name: httpd
+           state: restarted
+
 
 
 

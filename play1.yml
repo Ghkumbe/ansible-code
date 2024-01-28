@@ -1,18 +1,27 @@
 ---
 - hosts: all
-  become: true
+  
+  gather_facts: yes
+  ignore_errors: true
+  vars:
+    user_name: Kum
+    group_name: devops
+  vars_files:
+    - variables.yml
+    
   tasks:
     - name: Check the time
       command: date
-    - name: create user Kum
+    - name: create user Kum1
       user:
-         name: Kum2024
+         name: "{{user_name}}"
          comment: Kum Admin
     - name: create group
       group:
-         name: security
+         name: "{{group_name}}"
          state: present
+      become: true
     - name: Install package
       package:
-        name: vim
+        name: "{{pkg_name}}"
         state: present  
